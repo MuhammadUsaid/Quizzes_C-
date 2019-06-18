@@ -91,11 +91,13 @@ var percentage;
 var runTime;
 var startBlink;
 // Button Function
+var started = false;
 function start(){
     if(questionNumber == -1){
         var code = prompt("Enter Code:");
         if (code == "9922")
         {
+            started = true;
             runTime = setInterval(startTime,1000);
             img.className="hide";
             questionDiv.className="reveal";
@@ -104,40 +106,43 @@ function start(){
             timeBox.style.color="white";
         }
     }
-    if(questionNumber >= 0){
-        var a = document.getElementsByClassName('option');
-        var b = document.getElementsByClassName('option-select');
-        for(var i = 0;i<options[0].length;i++){
-            if(a[i].checked && b[i].innerHTML == answer[questionNumber]){
-                score++;
+    if(started)
+    {
+        if(questionNumber >= 0){
+            var a = document.getElementsByClassName('option');
+            var b = document.getElementsByClassName('option-select');
+            for(var i = 0;i<options[0].length;i++){
+                if(a[i].checked && b[i].innerHTML == answer[questionNumber]){
+                    score++;
+                }
             }
         }
-    }
-    if(questionNumber == questions.length - 1){
-        percentage = (score/questions.length*100).toFixed(2);
-        questionDiv.innerHTML="<h1>Result</h1><p>Your Percentage</p>";
-        optionDiv.innerHTML="<center>"+percentage+"%</center>";
-        button.innerHTML = "Start Again";
-        button.className = "button-start";
-        highscore.push(percentage);
-        displayHighScore.innerHTML = Math.max.apply(null,highscore)+"%"; 
-        score=0;
-        questionNumber=-1;
-        clearInterval(runTime);
-        clearInterval(startBlink);
-        timeBox.style.color="white";
-        time = 1200;
-    }
-    else{
-        questionNumber++;
-        timeBox.className="reveal";
-        questionDiv.innerHTML = "Q."+ (questionNumber+ 1) + " "+ questions[questionNumber];
-        optionDiv.innerHTML="";
-        for(var i = 0;i<options[0].length;i++){
-            optionDiv.innerHTML += "<input type='radio' onclick='selectAllow()' class='option' name='question' /><span class='option-select'>"+options[questionNumber][i]+"</span><br>";
+        if(questionNumber == questions.length - 1){
+            percentage = (score/questions.length*100).toFixed(2);
+            questionDiv.innerHTML="<h1>Result</h1><p>Your Percentage</p>";
+            optionDiv.innerHTML="<center>"+percentage+"%</center>";
+            button.innerHTML = "Start Again";
+            button.className = "button-start";
+            highscore.push(percentage);
+            displayHighScore.innerHTML = Math.max.apply(null,highscore)+"%"; 
+            score=0;
+            questionNumber=-1;
+            clearInterval(runTime);
+            clearInterval(startBlink);
+            timeBox.style.color="white";
+            time = 1200;
         }
-        button.innerHTML = "NEXT";
-        button.className = "button-right";
+        else{
+            questionNumber++;
+            timeBox.className="reveal";
+            questionDiv.innerHTML = "Q."+ (questionNumber+ 1) + " "+ questions[questionNumber];
+            optionDiv.innerHTML="";
+            for(var i = 0;i<options[0].length;i++){
+                optionDiv.innerHTML += "<input type='radio' onclick='selectAllow()' class='option' name='question' /><span class='option-select'>"+options[questionNumber][i]+"</span><br>";
+            }
+            button.innerHTML = "NEXT";
+            button.className = "button-right";
+        }
     }
 }
 function selectAllow(){
