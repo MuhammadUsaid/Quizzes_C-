@@ -1,8 +1,3 @@
-var fs = require("fs");
-fs.readFile("test.txt", function(err, buf) {
-    console.log(buf.toString());
-  })
-
 var startTime = 1200;
 var questions = [
     "<code><pre> for(int i = 0; i < 25; i++){\n if (i % 2 == 0)\n \t cout << i << endl;\n}</pre></code> <p> What will be the output?</p>",
