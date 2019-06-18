@@ -1,4 +1,4 @@
-var startTime = 1200;
+//var startTime = 1200;
 var questions = [
     "<code><pre> for(int i = 0; i < 25; i++){\n if (i % 2 == 0)\n \t cout << i << endl;\n}</pre></code> <p> What will be the output?</p>",
     "<code> <pre> int a = 5; int& b = a; int c = 10;\n b = c; b = 13; \n What is the value of c after this code is executed? </pre> </code>",
@@ -126,7 +126,7 @@ function start(){
         clearInterval(runTime);
         clearInterval(startBlink);
         timeBox.style.color="white";
-        time = startTime;
+        time = 1200;
     }
     else{
         questionNumber++;
@@ -160,7 +160,7 @@ function mustSelect(){
         }
     }
 }
-var time = startTime;
+var time = 1200;
 function startTime(){
     timeShow.innerHTML = time;
     if(time == 10){
@@ -180,7 +180,7 @@ function startTime(){
         clearInterval(runTime);
         clearInterval(startBlink);
         timeBox.style.color="white";
-        time = startTime;
+        time = 1200;
     //
         // timeBox.className="hide";
         // questionDiv.className="hide";
